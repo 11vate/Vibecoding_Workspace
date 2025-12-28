@@ -1,0 +1,205 @@
+.dungeon-view {
+  padding: var(--spacing-lg, 24px);
+  max-width: 1400px;
+  margin: 0 auto;
+  background: var(--color-background-primary, #1a1a2e);
+  color: var(--color-text-primary, #ffffff);
+  min-height: 100vh;
+}
+
+.dungeon-view__header {
+  margin-bottom: var(--spacing-xl, 32px);
+  text-align: center;
+}
+
+.dungeon-view__header h1 {
+  margin: 0 0 var(--spacing-sm, 8px) 0;
+  font-size: var(--font-size-xxl, 32px);
+  font-weight: var(--font-weight-xxl, 600);
+}
+
+.dungeon-view__header p {
+  margin: 0;
+  color: var(--color-text-secondary, #cccccc);
+  font-size: var(--font-size-md, 16px);
+}
+
+.dungeon-view__error {
+  padding: var(--spacing-md, 16px);
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid var(--color-status-error, #ff0000);
+  border-radius: var(--radius-md, 8px);
+  color: var(--color-status-error, #ff0000);
+  margin-bottom: var(--spacing-lg, 24px);
+}
+
+.dungeon-view__tiers {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl, 32px);
+}
+
+.dungeon-view__tier {
+  padding: var(--spacing-lg, 24px);
+  background: var(--color-surface-base, #16213e);
+  border-radius: var(--radius-lg, 12px);
+  border: 1px solid var(--color-border-default, rgba(255, 255, 255, 0.2));
+}
+
+.dungeon-view__tier-title {
+  margin: 0 0 var(--spacing-md, 16px) 0;
+  font-size: var(--font-size-xl, 24px);
+  color: var(--color-text-primary, #ffffff);
+}
+
+.dungeon-view__tier-floors {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: var(--spacing-sm, 8px);
+}
+
+.dungeon-view__floor {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-surface-base, #16213e);
+  border: 2px solid var(--color-border-default, rgba(255, 255, 255, 0.2));
+  border-radius: var(--radius-md, 8px);
+  cursor: pointer;
+  transition: all var(--duration-fast, 150ms);
+  position: relative;
+  color: var(--color-text-primary, #ffffff);
+}
+
+.dungeon-view__floor:hover:not(.dungeon-view__floor--locked) {
+  border-color: var(--color-border-focus, #00ffff);
+  background: var(--color-surface-elevated, #0f3460);
+  transform: scale(1.05);
+}
+
+.dungeon-view__floor--locked {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--color-background-accent, #0f3460);
+}
+
+.dungeon-view__floor--completed {
+  border-color: var(--color-status-success, #00ff00);
+  background: rgba(0, 255, 0, 0.1);
+}
+
+.dungeon-view__floor--boss {
+  border-width: 3px;
+  border-color: var(--color-rarity-mythic, #ff00ff);
+  background: rgba(255, 0, 255, 0.1);
+}
+
+.dungeon-view__floor-number {
+  font-size: var(--font-size-lg, 20px);
+  font-weight: var(--font-weight-lg, 500);
+}
+
+.dungeon-view__floor-boss {
+  font-size: var(--font-size-xs, 12px);
+  color: var(--color-rarity-mythic, #ff00ff);
+  font-weight: 600;
+  margin-top: var(--spacing-xs, 4px);
+}
+
+.dungeon-view__floor-check {
+  position: absolute;
+  top: var(--spacing-xs, 4px);
+  right: var(--spacing-xs, 4px);
+  color: var(--color-status-success, #00ff00);
+  font-size: var(--font-size-lg, 20px);
+  font-weight: bold;
+}
+
+.dungeon-view__floor-lock {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: var(--font-size-xl, 24px);
+  opacity: 0.7;
+}
+
+.dungeon-view__start-modal {
+  padding: var(--spacing-lg, 24px);
+}
+
+.dungeon-view__floor-info {
+  margin-bottom: var(--spacing-lg, 24px);
+  padding: var(--spacing-md, 16px);
+  background: var(--color-surface-base, #16213e);
+  border-radius: var(--radius-md, 8px);
+}
+
+.dungeon-view__floor-info p {
+  margin: var(--spacing-xs, 4px) 0;
+  color: var(--color-text-primary, #ffffff);
+}
+
+.dungeon-view__team-selection {
+  margin-bottom: var(--spacing-lg, 24px);
+}
+
+.dungeon-view__team-selection label {
+  display: block;
+  margin-bottom: var(--spacing-sm, 8px);
+  color: var(--color-text-primary, #ffffff);
+  font-weight: 500;
+}
+
+.dungeon-view__team-select {
+  width: 100%;
+  padding: var(--spacing-sm, 8px) var(--spacing-md, 16px);
+  background: var(--color-surface-base, #16213e);
+  border: 1px solid var(--color-border-default, rgba(255, 255, 255, 0.2));
+  border-radius: var(--radius-md, 8px);
+  color: var(--color-text-primary, #ffffff);
+  font-size: var(--font-size-md, 16px);
+  cursor: pointer;
+}
+
+.dungeon-view__team-select:hover {
+  border-color: var(--color-border-focus, #00ffff);
+}
+
+.dungeon-view__team-select:focus {
+  outline: none;
+  border-color: var(--color-border-focus, #00ffff);
+  box-shadow: 0 0 0 2px rgba(0, 255, 255, 0.2);
+}
+
+.dungeon-view__no-teams {
+  margin-top: var(--spacing-sm, 8px);
+  color: var(--color-text-tertiary, #888888);
+  font-size: var(--font-size-sm, 14px);
+  font-style: italic;
+}
+
+.dungeon-view__start-actions {
+  display: flex;
+  gap: var(--spacing-md, 16px);
+  justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  .dungeon-view__tier-floors {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+

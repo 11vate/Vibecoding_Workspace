@@ -1,0 +1,191 @@
+/**
+ * Global styles with Design Tokens
+ * Theme: Retro-Future Glitch ("The Terminal is Alive")
+ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Core Aesthetic Colors */
+  --c-grid-black: #050510;
+  --c-terminal-green: #00FF41;
+  --c-holo-cyan: #00F3FF;
+  --c-deep-navy: #0A1A2F;
+  --c-error-red: #FF003C;
+  --c-void-purple: #BC13FE;
+  --c-acid-lime: #CCFF00;
+  --c-static-white: #FFFFFF;
+
+  /* Color Tokens (Mapped to Aesthetic) */
+  --color-primary-action: var(--c-holo-cyan);
+  --color-primary-hover: #00C0CC;
+  --color-primary-active: #009099;
+  
+  --color-secondary-action: var(--c-void-purple);
+  --color-secondary-hover: #9000CC;
+  --color-secondary-active: #600099;
+  
+  --color-accent-action: var(--c-terminal-green);
+  --color-accent-hover: #00CC33;
+  --color-accent-active: #009926;
+  
+  --color-background-primary: var(--c-grid-black);
+  --color-background-panel: var(--c-deep-navy);
+  --color-background-accent: #0f3460;
+  --color-background-overlay: rgba(5, 5, 16, 0.85);
+  
+  --color-surface-base: var(--c-deep-navy);
+  --color-surface-elevated: #16213e;
+  --color-surface-interactive: rgba(0, 243, 255, 0.1);
+  
+  --color-text-primary: var(--c-static-white);
+  --color-text-secondary: rgba(255, 255, 255, 0.7);
+  --color-text-tertiary: rgba(255, 255, 255, 0.5);
+  --color-text-disabled: rgba(255, 255, 255, 0.3);
+  --color-text-inverse: #000000;
+  
+  --color-border-default: rgba(0, 243, 255, 0.2);
+  --color-border-focus: var(--c-holo-cyan);
+  --color-border-error: var(--c-error-red);
+  
+  --color-status-success: var(--c-terminal-green);
+  --color-status-warning: var(--c-acid-lime);
+  --color-status-error: var(--c-error-red);
+  --color-status-info: var(--c-holo-cyan);
+
+  /* Rarity Colors */
+  --color-rarity-basic: #808080;
+  --color-rarity-rare: #0088ff;
+  --color-rarity-sr: #aa00ff;
+  --color-rarity-legendary: #ffaa00;
+  --color-rarity-mythic: var(--c-void-purple);
+  --color-rarity-prismatic: #ffffff;
+  --color-rarity-omega: #ff0080;
+
+  /* Typography Tokens */
+  --font-pixel: 'Press Start 2P', monospace;
+  --font-tech: 'Rajdhani', sans-serif;
+  --font-mono: 'Fira Code', 'Courier New', monospace;
+  
+  --font-family-primary: var(--font-tech);
+  --font-family-header: var(--font-pixel);
+
+  /* Spacing Tokens */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+  
+  --spacing-button-padding-x: 16px;
+  --spacing-button-padding-y: 12px;
+  --spacing-button-gap: 8px;
+
+  /* Shadows & Glows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.6);
+  --shadow-neon: 0 0 10px rgba(0, 243, 255, 0.2);
+  --shadow-neon-strong: 0 0 15px rgba(0, 243, 255, 0.5);
+  --shadow-error: 0 0 10px rgba(255, 0, 60, 0.3);
+
+  /* Border Radius */
+  --radius-sm: 2px;
+  --radius-md: 4px; /* More angular for tech feel */
+  --radius-lg: 8px;
+  --radius-full: 9999px;
+
+  /* Animations */
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --easing-tech: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+body {
+  font-family: var(--font-family-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-background-primary);
+  color: var(--color-text-primary);
+  overflow-x: hidden;
+  /* subtle grid background */
+  background-image: 
+    linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* CRT Overlay Effect */
+body::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+  z-index: 9999;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-background-accent);
+  border: 1px solid var(--color-border-default);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-action);
+}
+
+/* Typography Utilities */
+.font-pixel {
+  font-family: var(--font-pixel);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-primary-action), var(--color-secondary-action));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Glitch Animation Keyframes */
+@keyframes glitch-skew {
+  0% { transform: skew(0deg); }
+  20% { transform: skew(-2deg); }
+  40% { transform: skew(2deg); }
+  60% { transform: skew(-1deg); }
+  80% { transform: skew(1deg); }
+  100% { transform: skew(0deg); }
+}
+
+@keyframes glitch-anim-1 {
+  0% { clip: rect(20px, 9999px, 10px, 0); }
+  20% { clip: rect(60px, 9999px, 80px, 0); }
+  40% { clip: rect(10px, 9999px, 50px, 0); }
+  60% { clip: rect(80px, 9999px, 20px, 0); }
+  80% { clip: rect(40px, 9999px, 90px, 0); }
+  100% { clip: rect(30px, 9999px, 60px, 0); }
+}

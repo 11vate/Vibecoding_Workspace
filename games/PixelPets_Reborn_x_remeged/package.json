@@ -1,0 +1,72 @@
+{
+  "name": "pixel-pets-reborn-x-remerged",
+  "version": "1.0.0",
+  "description": "Pixel Pets Reborn x ReMerged - Complete Redesign",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "generate:ui": "tsx scripts/generate-ui-assets.ts",
+    "generate:backgrounds": "tsx scripts/generate-backgrounds.ts",
+    "generate:pets": "tsx scripts/generate-base-pets.ts",
+    "generate:assets": "tsx scripts/generate-all-assets.ts",
+    "generate:all": "npm run generate:assets && npm run generate:pets"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.2",
+    "idb": "^8.0.3",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "react-router-dom": "^7.10.1",
+    "typescript": "^5.9.3",
+    "uuid": "^13.0.0",
+    "vite": "^7.3.0",
+    "vite-plugin-pwa": "^1.2.0",
+    "zod": "^4.2.1",
+    "zustand": "^5.0.9"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.1.0",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/uuid": "^10.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.50.0",
+    "@typescript-eslint/parser": "^8.50.0",
+    "@vitest/ui": "^2.1.8",
+    "eslint": "^9.39.2",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.25",
+    "prettier": "^3.7.4",
+    "vitest": "^2.1.8"
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

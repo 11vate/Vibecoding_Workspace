@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "version": "1.0",
+    "lastUpdated": "2025-01-24",
+    "totalAtoms": 0,
+    "nextId": "AKU-2025-001"
+  },
+  "atoms": {
+    "_example": {
+      "id": "AKU-YYYY-NNN",
+      "title": "Example atom title",
+      "category": "mechanics",
+      "tags": ["tag1", "tag2"],
+      "created": "2025-01-24",
+      "lastModified": "2025-01-24",
+      "file": "atoms/mechanics/AKU-YYYY-NNN.md",
+      "outgoingLinks": ["AKU-2025-002", "AKU-2025-003"],
+      "incomingLinks": ["AKU-2025-004"],
+      "status": "active"
+    }
+  },
+  "index": {
+    "byCategory": {
+      "mechanics": [],
+      "principles": [],
+      "decisions": [],
+      "insights": [],
+      "constraints": [],
+      "questions": []
+    },
+    "byTag": {},
+    "byYear": {
+      "2025": []
+    }
+  },
+  "statistics": {
+    "atomsPerCategory": {
+      "mechanics": 0,
+      "principles": 0,
+      "decisions": 0,
+      "insights": 0,
+      "constraints": 0,
+      "questions": 0
+    },
+    "totalLinks": 0,
+    "averageLinksPerAtom": 0,
+    "mostConnectedAtoms": [],
+    "recentlyModified": []
+  },
+  "notes": "This registry is automatically updated by the knowledge atomizer and graph builder tools. Manual edits should be avoided. Use tools/knowledge-atomizer/ to create new atoms."
+}

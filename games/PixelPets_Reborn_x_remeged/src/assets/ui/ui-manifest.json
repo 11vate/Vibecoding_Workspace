@@ -1,0 +1,268 @@
+{
+  "buttons": [
+    {
+      "id": "fuse",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "color": "#FF6B35",
+      "style": "glossy"
+    },
+    {
+      "id": "battle",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "color": "#4A90E2",
+      "style": "glossy"
+    },
+    {
+      "id": "summon",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "color": "#9B59B6",
+      "style": "glossy"
+    },
+    {
+      "id": "pvp",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "color": "#E74C3C",
+      "style": "glossy"
+    },
+    {
+      "id": "collection",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "color": "#16A085",
+      "style": "glossy"
+    },
+    {
+      "id": "dungeon",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "color": "#8E44AD",
+      "style": "glossy"
+    },
+    {
+      "id": "shop",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "color": "#F39C12",
+      "style": "glossy"
+    },
+    {
+      "id": "black-market",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "color": "#2C3E50",
+      "style": "glass"
+    },
+    {
+      "id": "confirm",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "color": "#27AE60",
+      "style": "gradient"
+    },
+    {
+      "id": "cancel",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "color": "#95A5A6",
+      "style": "flat"
+    },
+    {
+      "id": "back",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "color": "#7F8C8D",
+      "style": "outline"
+    },
+    {
+      "id": "next",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "color": "#3498DB",
+      "style": "gradient"
+    },
+    {
+      "id": "info",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "color": "#3498DB",
+      "style": "flat"
+    },
+    {
+      "id": "settings",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "color": "#95A5A6",
+      "style": "flat"
+    },
+    {
+      "id": "close",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "color": "#E74C3C",
+      "style": "flat"
+    }
+  ],
+  "progressBars": [
+    {
+      "id": "hp-full",
+      "fillColor": "#27AE60",
+      "style": "gradient"
+    },
+    {
+      "id": "hp-high",
+      "fillColor": "#27AE60",
+      "style": "gradient"
+    },
+    {
+      "id": "hp-medium",
+      "fillColor": "#F39C12",
+      "style": "gradient"
+    },
+    {
+      "id": "hp-low",
+      "fillColor": "#E74C3C",
+      "style": "gradient"
+    },
+    {
+      "id": "hp-critical",
+      "fillColor": "#C0392B",
+      "style": "gradient"
+    },
+    {
+      "id": "energy-full",
+      "fillColor": "#3498DB",
+      "style": "gradient"
+    },
+    {
+      "id": "energy-half",
+      "fillColor": "#3498DB",
+      "style": "gradient"
+    },
+    {
+      "id": "xp-bar",
+      "fillColor": "#9B59B6",
+      "style": "gradient"
+    },
+    {
+      "id": "loading-bar",
+      "fillColor": "#16A085",
+      "style": "standard"
+    }
+  ],
+  "panels": [
+    {
+      "id": "modal-small",
+      "width": 300,
+      "height": 200,
+      "style": "glass"
+    },
+    {
+      "id": "modal-medium",
+      "width": 400,
+      "height": 300,
+      "style": "glass"
+    },
+    {
+      "id": "modal-large",
+      "width": 600,
+      "height": 500,
+      "style": "glass"
+    },
+    {
+      "id": "pet-card",
+      "width": 200,
+      "height": 280,
+      "style": "bordered"
+    },
+    {
+      "id": "stone-card",
+      "width": 150,
+      "height": 180,
+      "style": "bordered"
+    },
+    {
+      "id": "ability-card",
+      "width": 160,
+      "height": 120,
+      "style": "flat"
+    },
+    {
+      "id": "stats-panel",
+      "width": 250,
+      "height": 200,
+      "style": "bordered"
+    },
+    {
+      "id": "lineage-node",
+      "width": 180,
+      "height": 100,
+      "style": "glass"
+    }
+  ],
+  "generated": "2025-12-27T19:29:15.659Z",
+  "version": "1.0.0"
+}

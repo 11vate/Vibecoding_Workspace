@@ -1,0 +1,169 @@
+/**
+ * Status Effect Indicators Styles
+ */
+
+.status-effect-indicators {
+  display: flex;
+  gap: 5px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.status-effect-indicators.top {
+  top: -30px;
+}
+
+.status-effect-indicators.bottom {
+  bottom: -30px;
+}
+
+.status-effect {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.7);
+  animation: pulse-status 2s ease-in-out infinite;
+}
+
+@keyframes pulse-status {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.status-icon {
+  font-size: 18px;
+  filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.8));
+}
+
+.status-stacks {
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  background: rgba(0, 0, 0, 0.9);
+  color: #fff;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 4px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.status-duration-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 0 0 15px 15px;
+  overflow: hidden;
+}
+
+.duration-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff0000, #ffff00, #00ff00);
+  transition: width 0.3s linear;
+}
+
+/* Status-specific colors */
+.status-effect.burn {
+  background: linear-gradient(135deg, rgba(255, 69, 0, 0.8), rgba(255, 140, 0, 0.8));
+  border-color: #FF4500;
+  box-shadow: 0 0 10px rgba(255, 69, 0, 0.6);
+}
+
+.status-effect.poison {
+  background: linear-gradient(135deg, rgba(0, 128, 0, 0.8), rgba(50, 205, 50, 0.8));
+  border-color: #32CD32;
+  box-shadow: 0 0 10px rgba(50, 205, 50, 0.6);
+}
+
+.status-effect.freeze {
+  background: linear-gradient(135deg, rgba(0, 191, 255, 0.8), rgba(135, 206, 235, 0.8));
+  border-color: #00BFFF;
+  box-shadow: 0 0 10px rgba(0, 191, 255, 0.6);
+}
+
+.status-effect.stun {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.8), rgba(255, 255, 0, 0.8));
+  border-color: #FFD700;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+}
+
+.status-effect.shield {
+  background: linear-gradient(135deg, rgba(74, 144, 226, 0.8), rgba(100, 149, 237, 0.8));
+  border-color: #4A90E2;
+  box-shadow: 0 0 10px rgba(74, 144, 226, 0.6);
+}
+
+.status-effect.regen {
+  background: linear-gradient(135deg, rgba(39, 174, 96, 0.8), rgba(46, 204, 113, 0.8));
+  border-color: #27AE60;
+  box-shadow: 0 0 10px rgba(39, 174, 96, 0.6);
+  animation: pulse-glow 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(39, 174, 96, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(39, 174, 96, 1);
+  }
+}
+
+.status-effect.buff {
+  background: linear-gradient(135deg, rgba(155, 89, 182, 0.8), rgba(142, 68, 173, 0.8));
+  border-color: #9B59B6;
+  box-shadow: 0 0 10px rgba(155, 89, 182, 0.6);
+}
+
+.status-effect.debuff {
+  background: linear-gradient(135deg, rgba(192, 57, 43, 0.8), rgba(231, 76, 60, 0.8));
+  border-color: #C0392B;
+  box-shadow: 0 0 10px rgba(192, 57, 43, 0.6);
+}
+
+.status-effect.confusion {
+  background: linear-gradient(135deg, rgba(243, 156, 18, 0.8), rgba(230, 126, 34, 0.8));
+  border-color: #F39C12;
+  box-shadow: 0 0 10px rgba(243, 156, 18, 0.6);
+  animation: shake 0.5s ease-in-out infinite;
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+}
+
+.status-effect.sleep {
+  background: linear-gradient(135deg, rgba(52, 73, 94, 0.8), rgba(44, 62, 80, 0.8));
+  border-color: #34495E;
+  box-shadow: 0 0 10px rgba(52, 73, 94, 0.6);
+  animation: float 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}

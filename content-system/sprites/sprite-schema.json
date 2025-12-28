@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Sprite Schema",
+  "description": "Definition of a generative sprite structure",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "seed": { "type": "integer" },
+    "type": { "type": "string", "enum": ["character", "item", "tile", "effect"] },
+    "dimensions": {
+      "type": "object",
+      "properties": {
+        "width": { "type": "integer" },
+        "height": { "type": "integer" },
+        "grid_unit": { "type": "integer", "default": 32 }
+      }
+    },
+    "palette": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" }
+    },
+    "parts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "layer": { "type": "integer" },
+          "color_index": { "type": "integer" },
+          "shape_data": { "type": "object" } 
+        }
+      }
+    },
+    "animations": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "frames": { "type": "array", "items": { "type": "object" } },
+          "loop": { "type": "boolean" },
+          "fps": { "type": "integer" }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "anchor_x": { "type": "number" },
+        "anchor_y": { "type": "number" },
+        "tags": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "required": ["id", "seed", "type", "dimensions", "palette", "parts"]
+}

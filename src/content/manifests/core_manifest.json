@@ -1,0 +1,76 @@
+{
+  "version": "1.0",
+  "content": [
+    {
+      "id": "player_hero",
+      "type": "sprite",
+      "seed": 12345,
+      "config": {
+        "dimensions": { "width": 32, "height": 32 },
+        "palette": ["#ff0000", "#00ff00", "#0000ff"],
+        "symmetry": "horizontal",
+        "complexity": 0.8
+      }
+    },
+    {
+      "id": "enemy_slime",
+      "type": "sprite",
+      "seed": 67890,
+      "config": {
+        "dimensions": { "width": 32, "height": 32 },
+        "palette": ["#00aa00", "#00ff00", "#aaffaa"],
+        "symmetry": "horizontal",
+        "complexity": 0.6
+      }
+    },
+    {
+      "id": "item_potion",
+      "type": "sprite",
+      "seed": 11111,
+      "config": {
+        "dimensions": { "width": 16, "height": 16 },
+        "palette": ["#aa0000", "#ff0000", "#ffffff"],
+        "symmetry": "none",
+        "complexity": 0.5
+      }
+    },
+    {
+      "id": "hero_lore",
+      "type": "lore",
+      "seed": 42,
+      "config": {
+        "keywords": ["brave", "knight", "destiny"]
+      }
+    },
+    {
+      "id": "slime_lore",
+      "type": "lore",
+      "seed": 99,
+      "config": {
+        "keywords": ["gooey", "forest", "hungry"]
+      }
+    },
+    {
+      "id": "prop_crate",
+      "type": "geometry",
+      "seed": 777,
+      "config": {
+        "type": "cube",
+        "size": 1.0,
+        "subdivisions": 1,
+        "roughness": 0
+      }
+    },
+    {
+      "id": "terrain_chunk",
+      "type": "geometry",
+      "seed": 888,
+      "config": {
+        "type": "pyramid",
+        "size": 2.0,
+        "subdivisions": 1,
+        "roughness": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+.stone-card {
+  border: 2px solid var(--color-border, #333);
+  border-radius: var(--radius-md, 8px);
+  background: var(--color-surface, #1a1a1a);
+  cursor: pointer;
+  transition: all var(--animation-fast, 0.2s ease);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.stone-card:hover {
+  border-color: var(--color-primary, #555);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md, 0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.stone-card--selected {
+  border-color: var(--color-primary, #fff);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+}
+
+.stone-card__type-bar {
+  height: 4px;
+  width: 100%;
+}
+
+.stone-card__content {
+  padding: var(--spacing-md, 12px);
+}
+
+.stone-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-sm, 8px);
+}
+
+.stone-card__type {
+  margin: 0;
+  font-size: var(--font-size-lg, 1.1em);
+  font-weight: 600;
+  color: var(--color-text-primary, #fff);
+}
+
+.stone-card__tier {
+  font-size: var(--font-size-sm, 0.85em);
+  font-weight: 600;
+  color: var(--color-text-secondary, #aaa);
+  padding: var(--spacing-xs, 4px) var(--spacing-sm, 8px);
+  background: var(--color-surface-elevated, #2a2a2a);
+  border-radius: var(--radius-sm, 4px);
+}
+
+.stone-card__glitched {
+  font-size: var(--font-size-sm, 0.85em);
+  font-weight: 700;
+  color: #ff00ff;
+  text-align: center;
+  padding: var(--spacing-xs, 4px);
+  background: rgba(255, 0, 255, 0.1);
+  border-radius: var(--radius-sm, 4px);
+  margin-bottom: var(--spacing-sm, 8px);
+  animation: glitch-pulse 2s ease-in-out infinite;
+}
+
+@keyframes glitch-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.stone-card__stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-xs, 4px);
+  margin-top: var(--spacing-sm, 8px);
+}
+
+.stone-card__stat {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--font-size-sm, 0.85em);
+}
+
+.stone-card__stat-label {
+  color: var(--color-text-secondary, #aaa);
+}
+
+.stone-card__stat-value {
+  color: var(--color-text-primary, #fff);
+  font-weight: 600;
+}
+
+
+
+
+
+
+
+
+

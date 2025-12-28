@@ -1,0 +1,473 @@
+/**
+ * Fusion Lab Styles
+ * Theme: Retro-Future Glitch ("The Alchemist's Terminal")
+ */
+
+.fusion-lab {
+  padding: var(--spacing-xl);
+  max-width: 1200px;
+  margin: 0 auto;
+  animation: fadeIn var(--duration-slow) var(--easing-easeOut);
+  position: relative;
+}
+
+/* Background grid for the lab */
+.fusion-lab::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(0, 243, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  z-index: -1;
+  pointer-events: none;
+  mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+}
+
+.fusion-lab__header {
+  margin-bottom: var(--spacing-xl);
+  text-align: center;
+  position: relative;
+}
+
+.fusion-lab__header h1 {
+  font-family: var(--font-pixel);
+  font-size: var(--font-size-xxl);
+  color: var(--color-primary-action);
+  text-shadow: 0 0 10px var(--color-primary-action);
+  margin-bottom: var(--spacing-sm);
+  text-transform: uppercase;
+}
+
+.fusion-lab__header p {
+  color: var(--color-text-secondary);
+  font-family: var(--font-tech);
+  font-size: var(--font-size-lg);
+  letter-spacing: 2px;
+}
+
+.fusion-lab__selection {
+  margin-bottom: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+/* Parent Slots */
+.fusion-lab__parents {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xl);
+  perspective: 1000px;
+}
+
+.fusion-lab__parent-slot {
+  flex: 1;
+  max-width: 300px;
+  position: relative;
+}
+
+.fusion-lab__parent-slot h3 {
+  font-family: var(--font-tech);
+  color: var(--color-text-primary);
+  text-align: center;
+  margin-bottom: var(--spacing-md);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.fusion-lab__plus {
+  font-family: var(--font-pixel);
+  font-size: 3em;
+  color: var(--color-primary-action);
+  animation: pulse 2s ease-in-out infinite, glitch-skew 3s infinite;
+  text-shadow: 0 0 20px var(--color-primary-action);
+}
+
+/* Stone Slots */
+.fusion-lab__stones {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xl);
+}
+
+.fusion-lab__stone-slot {
+  flex: 1;
+  max-width: 300px;
+  padding: var(--spacing-md);
+  background: rgba(10, 26, 47, 0.6);
+  border: 1px dashed var(--color-border-default);
+  border-radius: var(--radius-md);
+  transition: all var(--duration-normal) var(--easing-tech);
+  position: relative;
+  overflow: hidden;
+}
+
+.fusion-lab__stone-slot::before {
+  content: "EMPTY SLOT";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-tech);
+  color: rgba(255, 255, 255, 0.1);
+  font-weight: 700;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.fusion-lab__stone-slot:hover {
+  border-color: var(--color-primary-action);
+  box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+  background: rgba(10, 26, 47, 0.8);
+}
+
+.fusion-lab__stone-slot h3 {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: var(--color-text-primary);
+  font-family: var(--font-tech);
+  margin-bottom: var(--spacing-md);
+}
+
+/* Selection Area (Empty State) */
+.fusion-lab__select-area {
+  text-align: center;
+  color: var(--color-text-tertiary);
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-lg);
+}
+
+.fusion-lab__pet-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-md);
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: var(--spacing-sm);
+}
+
+/* Custom scrollbar for lists */
+.fusion-lab__pet-list::-webkit-scrollbar,
+.fusion-lab__stone-list::-webkit-scrollbar {
+  width: 6px;
+}
+.fusion-lab__pet-list::-webkit-scrollbar-thumb,
+.fusion-lab__stone-list::-webkit-scrollbar-thumb {
+  background: var(--color-primary-action);
+  border-radius: var(--radius-full);
+}
+
+/* Intent Input */
+.fusion-lab__intent {
+  margin-bottom: var(--spacing-xl);
+  background: var(--color-surface-base);
+  padding: var(--spacing-lg);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.fusion-lab__intent label {
+  display: block;
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-primary-action);
+  font-family: var(--font-tech);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.fusion-lab__intent textarea {
+  width: 100%;
+  padding: var(--spacing-md);
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+  resize: vertical;
+  transition: border-color 0.3s;
+}
+
+.fusion-lab__intent textarea:focus {
+  outline: none;
+  border-color: var(--color-primary-action);
+  box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+}
+
+/* Actions */
+.fusion-lab__actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+}
+
+.fusion-lab__fuse-button {
+  padding: var(--spacing-md) 48px;
+  background: var(--color-secondary-action); /* Void Purple for Fusion */
+  color: var(--color-text-inverse);
+  border: 1px solid var(--color-secondary-action);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-pixel);
+  font-size: var(--font-size-lg);
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 0 20px rgba(188, 19, 254, 0.4);
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+}
+
+.fusion-lab__fuse-button:hover:not(:disabled) {
+  background: transparent;
+  color: var(--color-secondary-action);
+  box-shadow: 0 0 40px rgba(188, 19, 254, 0.8);
+  text-shadow: 0 0 8px var(--color-secondary-action);
+}
+
+.fusion-lab__fuse-button:hover:not(:disabled)::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(188, 19, 254, 0.1) 10px,
+    rgba(188, 19, 254, 0.1) 20px
+  );
+  animation: scroll-bg 1s linear infinite;
+}
+
+@keyframes scroll-bg {
+  0% { background-position: 0 0; }
+  100% { background-position: 50px 0; }
+}
+
+.fusion-lab__fuse-button:disabled {
+  background: var(--color-surface-elevated);
+  border-color: var(--color-text-disabled);
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+  box-shadow: none;
+  filter: grayscale(1);
+}
+
+/* Selected Items (Stones) */
+.fusion-lab__selected-item,
+.fusion-lab__selected-stone {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  align-items: center;
+  width: 100%;
+}
+
+.fusion-lab__stone-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  text-align: center;
+  padding: var(--spacing-md);
+  background: var(--color-surface-base);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+  width: 100%;
+}
+
+.fusion-lab__stone-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+  max-height: 300px;
+  overflow-y: auto;
+  width: 100%;
+}
+
+.fusion-lab__stone-item {
+  padding: var(--spacing-sm);
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--duration-fast);
+  color: var(--color-text-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: var(--font-tech);
+}
+
+.fusion-lab__stone-item:hover {
+  border-color: var(--color-primary-action);
+  background: rgba(0, 243, 255, 0.1);
+  color: var(--color-text-primary);
+  box-shadow: 0 0 10px rgba(0, 243, 255, 0.1);
+}
+
+.fusion-lab__glitched {
+  color: var(--color-rarity-mythic);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  animation: glitch-text 2s infinite;
+}
+
+@keyframes glitch-text {
+  0% { opacity: 1; transform: translate(0); }
+  92% { opacity: 1; transform: translate(0); }
+  94% { opacity: 0.8; transform: translate(2px, -2px); }
+  96% { opacity: 1; transform: translate(-2px, 2px); }
+  98% { opacity: 0.9; transform: translate(1px, 0); }
+  100% { opacity: 1; transform: translate(0); }
+}
+
+/* Preview Section */
+.fusion-lab__preview {
+  margin: var(--spacing-xl) 0;
+  padding: var(--spacing-lg);
+  background: rgba(10, 26, 47, 0.9);
+  border: 1px solid var(--color-primary-action);
+  border-radius: var(--radius-md);
+  box-shadow: 0 0 30px rgba(0, 243, 255, 0.1);
+  position: relative;
+}
+
+.fusion-lab__preview::after {
+  content: "PREVIEW SIMULATION";
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  background: var(--color-background-primary);
+  padding: 0 10px;
+  color: var(--color-primary-action);
+  font-family: var(--font-tech);
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.fusion-lab__preview h3 {
+  margin: 0 0 var(--spacing-md) 0;
+  color: var(--color-primary-action);
+  font-family: var(--font-tech);
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(0, 243, 255, 0.3);
+  padding-bottom: var(--spacing-xs);
+}
+
+.fusion-lab__preview-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.fusion-lab__preview-rarity {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-lg);
+  font-family: var(--font-pixel);
+}
+
+.fusion-lab__upgrade-chance {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  font-family: var(--font-mono);
+}
+
+.fusion-lab__preview-stats h4,
+.fusion-lab__preview-abilities h4 {
+  margin: 0 0 var(--spacing-sm) 0;
+  color: var(--color-text-tertiary);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+}
+
+.fusion-lab__stat-ranges {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-sm);
+}
+
+.fusion-lab__stat-ranges > div {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: rgba(0, 0, 0, 0.3);
+  border-left: 2px solid var(--color-primary-action);
+  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+}
+
+/* Validation Errors */
+.fusion-lab__validation-errors {
+  margin: var(--spacing-md) 0;
+  padding: var(--spacing-md);
+  background: rgba(255, 0, 60, 0.1);
+  border: 1px solid var(--color-status-error);
+  border-radius: var(--radius-sm);
+  color: var(--color-status-error);
+  font-family: var(--font-mono);
+}
+
+/* Result Modal Styling Override (if inside lab) */
+.fusion-lab__result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-lg);
+}
+
+.fusion-lab__uniqueness-score {
+  width: 100%;
+  padding: var(--spacing-md);
+  background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(20,0,40,0.9));
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  margin-top: var(--spacing-md);
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.fusion-lab__uniqueness-score h3 {
+  margin: 0 0 var(--spacing-sm) 0;
+  color: var(--color-primary-action);
+  font-family: var(--font-tech);
+  font-size: var(--font-size-lg);
+  text-transform: uppercase;
+}
+
+.fusion-lab__score-value {
+  font-family: var(--font-pixel);
+  font-size: var(--font-size-xxl);
+  color: var(--color-secondary-action);
+  text-shadow: 0 0 10px var(--color-secondary-action);
+}
+
+.fusion-lab__score-item {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--spacing-xs);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+}

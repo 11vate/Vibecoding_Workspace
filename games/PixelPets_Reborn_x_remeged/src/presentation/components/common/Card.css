@@ -1,0 +1,95 @@
+/**
+ * Card Component Styles
+ * Theme: Retro-Future Glitch
+ */
+
+.card {
+  position: relative;
+  background-color: var(--color-background-panel);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-sm, 2px);
+  transition: all var(--duration-normal, 250ms) var(--easing-tech, cubic-bezier(0.23, 1, 0.32, 1));
+  overflow: hidden;
+  
+  /* Corner Accents using gradients */
+  background-image: 
+    linear-gradient(135deg, var(--color-primary-action) 5px, transparent 5px), /* Top Left */
+    linear-gradient(225deg, var(--color-primary-action) 5px, transparent 5px), /* Top Right */
+    linear-gradient(315deg, var(--color-primary-action) 5px, transparent 5px), /* Bottom Right */
+    linear-gradient(45deg, var(--color-primary-action) 5px, transparent 5px); /* Bottom Left */
+  background-position: top left, top right, bottom right, bottom left;
+  background-size: 10px 10px;
+  background-repeat: no-repeat;
+}
+
+/* Scanline overlay for cards */
+.card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(transparent 50%, rgba(0, 0, 0, 0.3) 50%);
+  background-size: 100% 4px;
+  pointer-events: none;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+/* Ensure content is above scanlines */
+.card > * {
+  position: relative;
+  z-index: 2;
+}
+
+.card--default {
+  background-color: var(--color-background-panel);
+}
+
+.card--elevated {
+  background-color: var(--color-surface-elevated);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-border-focus);
+}
+
+.card--interactive {
+  cursor: pointer;
+}
+
+.card--interactive:hover {
+  background-color: var(--color-surface-elevated);
+  border-color: var(--color-primary-action);
+  box-shadow: var(--shadow-neon);
+}
+
+.card--interactive:hover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0, 243, 255, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.card--interactive:active {
+  transform: translateY(1px);
+  box-shadow: 0 0 5px rgba(0, 243, 255, 0.2);
+}
+
+/* Padding variants */
+.card--padding-none {
+  padding: 0;
+}
+
+.card--padding-sm {
+  padding: var(--spacing-sm, 8px);
+}
+
+.card--padding-md {
+  padding: var(--spacing-card-padding, 16px);
+}
+
+.card--padding-lg {
+  padding: var(--spacing-lg, 24px);
+}

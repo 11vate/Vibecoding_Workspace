@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Force Database Reseed</title>
+</head>
+<body>
+  <h1>Force Database Reseed</h1>
+  <button onclick="resetDatabase()">Reset Database & Reseed</button>
+  <div id="log" style="margin-top: 20px; font-family: monospace; white-space: pre-wrap;"></div>
+
+  <script type="module">
+    async function resetDatabase() {
+      const log = document.getElementById('log');
+      log.textContent = 'Starting database reset...\n';
+
+      try {
+        // Delete the entire database
+        log.textContent += 'Deleting IndexedDB...\n';
+        const deleteRequest = indexedDB.deleteDatabase('PixelPetsDB');
+
+        await new Promise((resolve, reject) => {
+          deleteRequest.onsuccess = () => {
+            log.textContent += 'Database deleted successfully!\n';
+            resolve();
+          };
+          deleteRequest.onerror = () => {
+            log.textContent += 'Error deleting database\n';
+            reject(deleteRequest.error);
+          };
+        });
+
+        log.textContent += '\n✅ Database reset complete!\n';
+        log.textContent += '\nNow refresh the main game page to trigger reseeding.\n';
+
+      } catch (error) {
+        log.textContent += `\n❌ Error: ${error}\n`;
+      }
+    }
+
+    window.resetDatabase = resetDatabase;
+  </script>
+</body>
+</html>

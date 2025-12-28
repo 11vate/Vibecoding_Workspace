@@ -1,0 +1,231 @@
+/**
+ * Starter Pet Selection Styles
+ */
+
+.starter-selection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  padding: 2rem;
+}
+
+.starter-selection__container {
+  max-width: 900px;
+  width: 100%;
+  background: rgba(22, 33, 62, 0.95);
+  border: 2px solid #00ffff;
+  border-radius: 12px;
+  padding: 3rem;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+.starter-selection__title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #00ffff;
+  margin: 0 0 0.5rem 0;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.starter-selection__subtitle {
+  text-align: center;
+  color: #aaa;
+  font-size: 1rem;
+  margin: 0 0 2rem 0;
+}
+
+.starter-selection__form-group {
+  margin-bottom: 2rem;
+}
+
+.starter-selection__label {
+  display: block;
+  color: #00ffff;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.starter-selection__input {
+  width: 100%;
+  max-width: 300px;
+  padding: 0.75rem;
+  background: rgba(0, 255, 255, 0.1);
+  border: 1px solid #00ffff;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.starter-selection__input:focus {
+  outline: none;
+  background: rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.starter-selection__input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.starter-selection__pets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.starter-selection__pet-card {
+  position: relative;
+  aspect-ratio: 1;
+  padding: 1rem;
+  background: rgba(0, 255, 255, 0.05);
+  border: 2px solid rgba(0, 255, 255, 0.3);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.starter-selection__pet-card:hover:not(:disabled) {
+  background: rgba(0, 255, 255, 0.15);
+  border-color: #00ffff;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+}
+
+.starter-selection__pet-card.selected {
+  background: rgba(0, 255, 255, 0.25);
+  border-color: #00ffff;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.6), inset 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+.starter-selection__pet-card:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.starter-selection__pet-card-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  width: 100%;
+}
+
+.starter-selection__pet-family {
+  font-size: 0.7rem;
+  color: #00ffff;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.starter-selection__pet-name {
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 700;
+}
+
+.starter-selection__pet-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.65rem;
+  color: #aaa;
+}
+
+.starter-selection__pet-stats .stat {
+  display: block;
+}
+
+.starter-selection__pet-rarity {
+  font-size: 0.75rem;
+  color: #ffff00;
+  font-weight: 600;
+  text-transform: capitalize;
+  margin-top: 0.3rem;
+}
+
+.starter-selection__lore {
+  background: rgba(0, 255, 255, 0.08);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  border-radius: 6px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.starter-selection__lore h3 {
+  color: #00ffff;
+  margin: 0 0 0.5rem 0;
+}
+
+.starter-selection__lore p {
+  color: #ccc;
+  margin: 0;
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+
+.starter-selection__error {
+  background: rgba(255, 50, 50, 0.1);
+  border: 1px solid #ff3232;
+  color: #ff6666;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.starter-selection__start-button {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, #00ffff 0%, #0088ff 100%);
+  border: none;
+  border-radius: 6px;
+  color: #000;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.starter-selection__start-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(0, 255, 255, 0.6);
+}
+
+.starter-selection__start-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .starter-selection__container {
+    padding: 1.5rem;
+  }
+
+  .starter-selection__title {
+    font-size: 1.8rem;
+  }
+
+  .starter-selection__pets-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .starter-selection__pet-card {
+    padding: 0.75rem;
+  }
+
+  .starter-selection__pet-name {
+    font-size: 0.9rem;
+  }
+}

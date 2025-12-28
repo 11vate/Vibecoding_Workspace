@@ -1,0 +1,5 @@
+ID: hero_lore
+SEED: 42
+KEYWORDS: brave, knight, destiny
+
+In the land of BRAVE, only the KNIGHT survive.

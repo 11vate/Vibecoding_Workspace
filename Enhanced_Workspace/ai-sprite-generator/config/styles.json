@@ -1,0 +1,39 @@
+{
+  "pixel-art": {
+    "description": "Standard pixel art style",
+    "model": "stable-diffusion-xl",
+    "lora": "pixel-art-xl",
+    "resolution": [64, 64]
+  },
+  "pixel-art-8bit": {
+    "description": "8-bit retro pixel art",
+    "model": "stable-diffusion-xl",
+    "lora": "pixel-art-xl",
+    "resolution": [32, 32]
+  },
+  "pixel-art-16bit": {
+    "description": "16-bit pixel art",
+    "model": "stable-diffusion-xl",
+    "lora": "pixel-art-xl",
+    "resolution": [64, 64]
+  },
+  "pixel-art-hd": {
+    "description": "High definition pixel art",
+    "model": "stable-diffusion-xl",
+    "lora": "pixel-art-xl",
+    "resolution": [128, 128]
+  },
+  "cartoon": {
+    "description": "Cartoon style",
+    "model": "stable-diffusion-2.1",
+    "lora": "cartoon-lora",
+    "resolution": [128, 128]
+  }
+}
+
+
+
+
+
+
+

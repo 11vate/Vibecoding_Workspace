@@ -1,0 +1,33 @@
+{
+  "name": "ultimate_cursor_vibecoding_workspace",
+  "version": "1.0.0",
+  "description": "**Transform any AI from code generator into design intelligence system.**",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gate:assets": "tsx tools/gates/check-asset-sourcing.ts",
+    "gate:integrity": "tsx tools/gates/check-content-integrity.ts",
+    "gate:all": "npm run gate:assets && npm run gate:integrity",
+    "compile:content": "tsx tools/generators/ContentCompiler.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^25.0.3",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/glob": "^8.1.0",
+    "canvas": "^3.2.0",
+    "chalk": "^5.6.2",
+    "fs-extra": "^11.3.3",
+    "glob": "^13.0.0",
+    "zod": "^4.2.1"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "registry_version": "1.0",
+  "sources": [
+    {
+      "name": "Kenney UI Pack",
+      "url": "https://kenney.nl/assets/ui-pack",
+      "license": "CC0",
+      "mode": "Mode 2",
+      "assets_imported": []
+    },
+    {
+      "name": "OpenGameArt Generic RPG",
+      "url": "https://opengameart.org/content/generic-rpg-pack",
+      "license": "CC-BY",
+      "mode": "Mode 2",
+      "assets_imported": []
+    }
+  ]
+}

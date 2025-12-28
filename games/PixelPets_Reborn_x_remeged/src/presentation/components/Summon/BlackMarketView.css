@@ -1,0 +1,232 @@
+.black-market {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: 'Courier New', monospace;
+}
+
+.black-market__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 2px solid var(--color-palette-red);
+  padding-bottom: 10px;
+}
+
+.black-market__title {
+  color: var(--color-palette-red);
+  font-size: 2rem;
+  text-shadow: 2px 0 0 rgba(0,0,0,0.5), -1px 0 0 rgba(0,0,0,0.5);
+  animation: glitch-text 3s infinite;
+  letter-spacing: -1px;
+}
+
+.black-market__timer {
+  color: var(--color-text-secondary);
+  font-size: 0.8rem;
+  margin-top: 5px;
+}
+
+.black-market__currency {
+  font-size: 1.2rem;
+  color: var(--color-palette-red);
+  background: rgba(255, 0, 0, 0.1);
+  padding: 5px 15px;
+  border: 1px dashed var(--color-palette-red);
+}
+
+.black-market__loading {
+  text-align: center;
+  color: var(--color-palette-red);
+  font-size: 1.2rem;
+  animation: blink 1s infinite;
+  margin-top: 50px;
+}
+
+.black-market__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.black-market__card {
+  background: #110505;
+  border: 1px solid var(--color-palette-red);
+  padding: 15px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.black-market__card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(255, 0, 0, 0.2);
+  border-color: #ff4444;
+}
+
+.black-market__card-glitch-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.1) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.black-market__pet-name {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #331111;
+  padding-bottom: 5px;
+}
+
+.black-market__stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+  font-size: 0.85rem;
+  color: #ccc;
+  margin-bottom: 15px;
+}
+
+.black-market__stat-boost {
+  color: #00ff00;
+  font-size: 0.7rem;
+}
+
+.black-market__stat-penalty {
+  color: #ff0000;
+  font-size: 0.7rem;
+}
+
+.black-market__price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #331111;
+  padding-top: 10px;
+  font-weight: bold;
+  color: var(--color-palette-red);
+}
+
+.black-market__buy-btn {
+  background: transparent;
+  border: 1px solid var(--color-palette-red);
+  color: var(--color-palette-red);
+  padding: 5px 10px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.black-market__buy-btn:hover:not(:disabled) {
+  background: var(--color-palette-red);
+  color: #000;
+}
+
+.black-market__buy-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  border-color: #555;
+  color: #555;
+}
+
+.black-market__confirm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  text-align: center;
+}
+
+.black-market__confirm-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.text-warning {
+  color: #ffaa00;
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+/* Result Overlay */
+.black-market__result-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  backdrop-filter: blur(5px);
+  animation: fade-in 0.3s ease-out;
+}
+
+.black-market__result-content {
+  background: #110000;
+  border: 2px solid var(--color-palette-red);
+  padding: 30px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 90%;
+  width: 400px;
+  box-shadow: 0 0 50px rgba(255, 0, 0, 0.2);
+  animation: glitch-entry 0.3s steps(5);
+}
+
+.black-market__result-title {
+  color: var(--color-palette-red);
+  font-family: 'Courier New', monospace;
+  font-size: 1.5rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.black-market__pet-display {
+  margin: 10px 0;
+  transform: scale(1.1);
+  filter: contrast(1.2) brightness(0.9) sepia(0.3) hue-rotate(-50deg);
+}
+
+@keyframes glitch-text {
+  0% { transform: translate(0); }
+  2% { transform: translate(-2px, 0); }
+  4% { transform: translate(2px, 0); }
+  6% { transform: translate(0); }
+  100% { transform: translate(0); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes glitch-entry {
+  0% { transform: scale(0.9) translateX(-10px); clip-path: inset(0 0 0 0); }
+  20% { transform: scale(1.1) translateX(10px); clip-path: inset(20% 0 0 0); }
+  40% { transform: scale(0.95) translateX(-5px); clip-path: inset(0 0 20% 0); }
+  60% { transform: scale(1.05) translateX(5px); clip-path: inset(0 20% 0 0); }
+  80% { transform: scale(0.98) translateX(-2px); clip-path: inset(0 0 0 20%); }
+  100% { transform: scale(1) translateX(0); clip-path: inset(0 0 0 0); }
+}

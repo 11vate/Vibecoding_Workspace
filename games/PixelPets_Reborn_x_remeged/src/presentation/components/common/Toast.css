@@ -1,0 +1,105 @@
+/**
+ * Toast Component Styles
+ */
+
+.toast-container {
+  position: fixed;
+  top: var(--spacing-md, 16px);
+  right: var(--spacing-md, 16px);
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm, 8px);
+  pointer-events: none;
+}
+
+.toast {
+  background-color: var(--color-surface-base, #16213e);
+  border: 1px solid var(--color-border-default, rgba(255, 255, 255, 0.2));
+  border-radius: var(--radius-md, 8px);
+  box-shadow: var(--shadow-lg, 0 8px 16px rgba(0, 0, 0, 0.5));
+  padding: var(--spacing-md, 16px);
+  min-width: 300px;
+  max-width: 400px;
+  pointer-events: auto;
+  animation: slideInRight var(--duration-normal, 250ms) var(--easing-easeOut, cubic-bezier(0, 0, 0.2, 1));
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.toast__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md, 16px);
+}
+
+.toast__message {
+  color: var(--color-text-primary, #ffffff);
+  font-size: var(--font-size-sm, 14px);
+  line-height: 1.5;
+  flex: 1;
+}
+
+.toast__close {
+  background: none;
+  border: none;
+  color: var(--color-text-secondary, #cccccc);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm, 4px);
+  transition: all var(--duration-fast, 150ms) var(--easing-easeOut, cubic-bezier(0, 0, 0.2, 1));
+  flex-shrink: 0;
+}
+
+.toast__close:hover {
+  background-color: var(--color-surface-interactive, rgba(0, 255, 255, 0.1));
+  color: var(--color-text-primary, #ffffff);
+}
+
+/* Type variants */
+.toast--success {
+  border-left: 4px solid var(--color-status-success, #00ff00);
+}
+
+.toast--error {
+  border-left: 4px solid var(--color-status-error, #ff0000);
+}
+
+.toast--warning {
+  border-left: 4px solid var(--color-status-warning, #ffaa00);
+}
+
+.toast--info {
+  border-left: 4px solid var(--color-status-info, #00ffff);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,16 @@
+{
+  "assets": [
+    {
+      "id": "ASSET-001",
+      "path": "games/PixelPets_Reborn_x_remeged/public/icons/icon-512x512.png",
+      "source_mode": "Mode 3",
+      "license": "Project Proprietary"
+    },
+    {
+      "id": "ASSET-002",
+      "path": "games/PixelPets_Reborn_x_remeged/public/icons/icon-192x192.png",
+      "source_mode": "Mode 3",
+      "license": "Project Proprietary"
+    }
+  ]
+}

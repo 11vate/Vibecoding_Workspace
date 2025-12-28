@@ -1,0 +1,5 @@
+ID: slime_lore
+SEED: 99
+KEYWORDS: gooey, forest, hungry
+
+In the land of GOOEY, only the FOREST survive.

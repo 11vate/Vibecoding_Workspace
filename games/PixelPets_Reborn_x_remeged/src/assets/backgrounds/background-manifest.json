@@ -1,0 +1,58 @@
+{
+  "arenas": [
+    {
+      "id": "pyro-arena",
+      "family": "PYRO_KIN",
+      "resolution": "1280x720"
+    },
+    {
+      "id": "aqua-arena",
+      "family": "AQUA_BORN",
+      "resolution": "1280x720"
+    },
+    {
+      "id": "terra-arena",
+      "family": "TERRA_FORGED",
+      "resolution": "1280x720"
+    },
+    {
+      "id": "volt-arena",
+      "family": "VOLT_STREAM",
+      "resolution": "1280x720"
+    },
+    {
+      "id": "shadow-arena",
+      "family": "SHADOW_VEIL",
+      "resolution": "1280x720"
+    },
+    {
+      "id": "lumina-arena",
+      "family": "LUMINA",
+      "resolution": "1280x720"
+    }
+  ],
+  "uiBackgrounds": [
+    {
+      "id": "main-menu",
+      "description": "Main menu gradient background",
+      "resolution": "1920x1080"
+    },
+    {
+      "id": "collection-view",
+      "description": "Collection grid texture",
+      "resolution": "1920x1080"
+    },
+    {
+      "id": "fusion-lab",
+      "description": "Fusion lab glowing background",
+      "resolution": "1920x1080"
+    },
+    {
+      "id": "black-market",
+      "description": "Black market dark glitch background",
+      "resolution": "1920x1080"
+    }
+  ],
+  "generated": "2025-12-27T19:37:39.594Z",
+  "version": "1.0.0"
+}

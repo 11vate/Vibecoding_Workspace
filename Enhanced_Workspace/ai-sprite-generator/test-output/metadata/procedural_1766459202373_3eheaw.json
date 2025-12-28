@@ -1,0 +1,110 @@
+{
+  "name": "procedural_1766459202373_3eheaw",
+  "type": "sprite-sheet",
+  "width": 192,
+  "height": 192,
+  "format": "png",
+  "frames": [
+    {
+      "index": 0,
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "width": 64,
+        "height": 64
+      }
+    },
+    {
+      "index": 1,
+      "bounds": {
+        "x": 64,
+        "y": 0,
+        "width": 64,
+        "height": 64
+      }
+    },
+    {
+      "index": 2,
+      "bounds": {
+        "x": 128,
+        "y": 0,
+        "width": 64,
+        "height": 64
+      }
+    },
+    {
+      "index": 3,
+      "bounds": {
+        "x": 0,
+        "y": 64,
+        "width": 64,
+        "height": 64
+      }
+    },
+    {
+      "index": 4,
+      "bounds": {
+        "x": 64,
+        "y": 64,
+        "width": 64,
+        "height": 64
+      }
+    },
+    {
+      "index": 5,
+      "bounds": {
+        "x": 128,
+        "y": 64,
+        "width": 64,
+        "height": 64
+      }
+    },
+    {
+      "index": 6,
+      "bounds": {
+        "x": 0,
+        "y": 128,
+        "width": 64,
+        "height": 64
+      }
+    },
+    {
+      "index": 7,
+      "bounds": {
+        "x": 64,
+        "y": 128,
+        "width": 64,
+        "height": 64
+      }
+    }
+  ],
+  "animations": {
+    "idle": {
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "frameRate": 8,
+      "loop": true
+    }
+  },
+  "metadata": {
+    "entity": "pet",
+    "style": "pixel-art",
+    "theme": "fire",
+    "action": "idle",
+    "perspective": "side-view",
+    "tags": [
+      "procedural",
+      "pixel-art",
+      "pet"
+    ],
+    "createdAt": "2025-12-23T03:06:42.373Z"
+  }
+}

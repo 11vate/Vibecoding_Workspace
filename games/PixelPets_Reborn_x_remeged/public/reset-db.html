@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PixelPets Database Reset Utility</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #00ffff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid #00ffff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 30px;
+            font-size: 12px;
+        }
+
+        .warning {
+            background: rgba(255, 100, 0, 0.2);
+            border: 1px solid #ff6400;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            color: #ffaa00;
+        }
+
+        .info {
+            background: rgba(0, 100, 255, 0.2);
+            border: 1px solid #0088ff;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            color: #00ccff;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-danger {
+            background: rgba(255, 0, 0, 0.2);
+            color: #ff4444;
+            border-color: #ff4444;
+        }
+
+        .btn-danger:hover {
+            background: rgba(255, 0, 0, 0.4);
+            box-shadow: 0 0 15px rgba(255, 68, 68, 0.5);
+        }
+
+        .btn-info {
+            background: rgba(0, 200, 255, 0.2);
+            color: #00ccff;
+            border-color: #00ccff;
+        }
+
+        .btn-info:hover {
+            background: rgba(0, 200, 255, 0.4);
+            box-shadow: 0 0 15px rgba(0, 204, 255, 0.5);
+        }
+
+        .btn-success {
+            background: rgba(0, 255, 0, 0.2);
+            color: #00ff88;
+            border-color: #00ff88;
+        }
+
+        .btn-success:hover {
+            background: rgba(0, 255, 0, 0.4);
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+        }
+
+        #status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 12px;
+            line-height: 1.6;
+            display: none;
+        }
+
+        #status.show {
+            display: block;
+        }
+
+        #status.success {
+            background: rgba(0, 255, 0, 0.2);
+            border: 1px solid #00ff88;
+            color: #00ff88;
+        }
+
+        #status.error {
+            background: rgba(255, 0, 0, 0.2);
+            border: 1px solid #ff4444;
+            color: #ff4444;
+        }
+
+        .code {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+        }
+
+        ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 Database Reset Utility</h1>
+        <p class="subtitle">PixelPets Reborn x Remerged</p>
+
+        <div class="warning">
+            <strong>⚠️ WARNING:</strong> This will permanently delete all game data including:
+            <ul>
+                <li>All collected pets</li>
+                <li>Player progress and currency</li>
+                <li>Fusion history</li>
+                <li>Battle records</li>
+            </ul>
+        </div>
+
+        <div class="info">
+            <strong>ℹ️ When to use this:</strong>
+            <ul>
+                <li>After migrating seed data structure</li>
+                <li>Testing fresh game initialization</li>
+                <li>Fixing database corruption issues</li>
+                <li>Troubleshooting summoning system</li>
+            </ul>
+        </div>
+
+        <button class="btn-info" onclick="showStats()">
+            📊 Show Database Stats
+        </button>
+
+        <button class="btn-danger" onclick="resetDatabase()">
+            🗑️ Reset Database & Reload
+        </button>
+
+        <button class="btn-success" onclick="goToGame()">
+            🎮 Go to Game
+        </button>
+
+        <div id="status"></div>
+    </div>
+
+    <script>
+        const DB_NAME = 'pixel_pets_reborn_x_remeged';
+
+        function showStatus(message, type = 'success') {
+            const statusDiv = document.getElementById('status');
+            statusDiv.textContent = message;
+            statusDiv.className = `show ${type}`;
+        }
+
+        async function showStats() {
+            try {
+                const db = await indexedDB.databases();
+                const ourDb = db.find(d => d.name === DB_NAME);
+
+                if (!ourDb) {
+                    showStatus('❌ Database not found. It may not be initialized yet.', 'error');
+                    return;
+                }
+
+                const connection = await new Promise((resolve, reject) => {
+                    const request = indexedDB.open(DB_NAME);
+                    request.onsuccess = () => resolve(request.result);
+                    request.onerror = () => reject(request.error);
+                });
+
+                const storeNames = Array.from(connection.objectStoreNames);
+                const stats = [];
+
+                for (const storeName of storeNames) {
+                    const tx = connection.transaction(storeName, 'readonly');
+                    const store = tx.objectStore(storeName);
+                    const count = await new Promise((resolve, reject) => {
+                        const request = store.count();
+                        request.onsuccess = () => resolve(request.result);
+                        request.onerror = () => reject(request.error);
+                    });
+                    stats.push(`${storeName}: ${count} records`);
+                }
+
+                connection.close();
+
+                showStatus(
+                    `📊 Database Statistics:\n\n${stats.join('\n')}\n\nTotal stores: ${storeNames.length}`,
+                    'success'
+                );
+            } catch (error) {
+                showStatus(`❌ Error: ${error.message}`, 'error');
+            }
+        }
+
+        async function resetDatabase() {
+            const confirmed = confirm(
+                '⚠️ ARE YOU SURE?\n\n' +
+                'This will DELETE ALL game data and cannot be undone.\n\n' +
+                'The page will reload automatically after reset.\n\n' +
+                'Click OK to proceed with database reset.'
+            );
+
+            if (!confirmed) {
+                showStatus('✓ Reset cancelled.', 'success');
+                return;
+            }
+
+            try {
+                showStatus('🔄 Deleting database...', 'success');
+
+                // Delete the database
+                await new Promise((resolve, reject) => {
+                    const request = indexedDB.deleteDatabase(DB_NAME);
+                    request.onsuccess = () => resolve();
+                    request.onerror = () => reject(request.error);
+                    request.onblocked = () => {
+                        alert('Database deletion blocked. Please close all other tabs with this app open.');
+                        reject(new Error('Database deletion blocked'));
+                    };
+                });
+
+                // Clear localStorage flags
+                localStorage.setItem('db_migration_reset', 'true');
+                localStorage.setItem('db_migration_timestamp', Date.now().toString());
+
+                showStatus('✓ Database deleted! Reloading in 2 seconds...', 'success');
+
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 2000);
+            } catch (error) {
+                showStatus(`❌ Error: ${error.message}`, 'error');
+            }
+        }
+
+        function goToGame() {
+            window.location.href = '/';
+        }
+
+        // Auto-show stats on load
+        setTimeout(showStats, 500);
+    </script>
+</body>
+</html>

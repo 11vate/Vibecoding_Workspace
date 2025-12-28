@@ -1,0 +1,19 @@
+{
+  "name": "knowledge-atomizer",
+  "version": "1.0.0",
+  "description": "Breaks monolithic patterns into atomic knowledge units using Zettelkasten method",
+  "main": "atomize.js",
+  "scripts": {
+    "build": "tsc",
+    "atomize": "ts-node atomize.ts",
+    "test": "ts-node test.ts"
+  },
+  "keywords": ["zettelkasten", "knowledge-management", "atomization"],
+  "author": "Ultimate Design Intelligence Workspace",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.9.0"
+  }
+}

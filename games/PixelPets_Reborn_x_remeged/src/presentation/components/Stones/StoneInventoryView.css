@@ -1,0 +1,124 @@
+.stone-inventory-view {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--spacing-lg, 24px);
+}
+
+.stone-inventory-view__header {
+  margin-bottom: var(--spacing-xl, 32px);
+}
+
+.stone-inventory-view__header h1 {
+  margin: 0 0 var(--spacing-sm, 8px) 0;
+  font-size: var(--font-size-xxl, 2rem);
+  color: var(--color-text-primary, #fff);
+}
+
+.stone-inventory-view__header p {
+  margin: 0 0 var(--spacing-sm, 8px) 0;
+  color: var(--color-text-secondary, #aaa);
+  font-size: var(--font-size-md, 1rem);
+}
+
+.stone-inventory-view__count {
+  font-size: var(--font-size-sm, 0.85em);
+  color: var(--color-text-secondary, #aaa);
+  margin-top: var(--spacing-sm, 8px);
+}
+
+.stone-inventory-view__loading,
+.stone-inventory-view__error {
+  text-align: center;
+  padding: var(--spacing-xxl, 48px);
+  color: var(--color-text-secondary, #aaa);
+}
+
+.stone-inventory-view__error {
+  color: var(--color-error, #ff4444);
+}
+
+.stone-inventory-view__controls {
+  margin-bottom: var(--spacing-xl, 32px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md, 16px);
+}
+
+.stone-inventory-view__search {
+  max-width: 400px;
+}
+
+.stone-inventory-view__filters {
+  display: flex;
+  gap: var(--spacing-lg, 24px);
+  flex-wrap: wrap;
+}
+
+.stone-inventory-view__filter-group {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm, 8px);
+}
+
+.stone-inventory-view__filter-group label {
+  font-weight: 500;
+  color: var(--color-text-primary, #fff);
+  white-space: nowrap;
+}
+
+.stone-inventory-view__select {
+  padding: var(--spacing-sm, 8px) var(--spacing-md, 12px);
+  border: 1px solid var(--color-border, #333);
+  border-radius: var(--radius-md, 8px);
+  background: var(--color-surface, #1a1a1a);
+  color: var(--color-text-primary, #fff);
+  font-size: var(--font-size-md, 1rem);
+  cursor: pointer;
+  transition: border-color var(--animation-fast, 0.2s ease);
+}
+
+.stone-inventory-view__select:hover {
+  border-color: var(--color-primary, #555);
+}
+
+.stone-inventory-view__select:focus {
+  outline: none;
+  border-color: var(--color-primary, #555);
+  box-shadow: 0 0 0 2px rgba(85, 85, 85, 0.3);
+}
+
+.stone-inventory-view__empty {
+  text-align: center;
+  padding: var(--spacing-xxl, 48px);
+  color: var(--color-text-secondary, #aaa);
+}
+
+.stone-inventory-view__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--spacing-lg, 24px);
+}
+
+@media (max-width: 768px) {
+  .stone-inventory-view {
+    padding: var(--spacing-md, 16px);
+  }
+
+  .stone-inventory-view__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stone-inventory-view__filters {
+    flex-direction: column;
+    gap: var(--spacing-md, 16px);
+  }
+}
+
+
+
+
+
+
+
+
+
