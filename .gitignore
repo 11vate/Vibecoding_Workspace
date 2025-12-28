@@ -71,3 +71,28 @@ tmp/
 desktop.ini
 $RECYCLE.BIN/
 
+# Editor/IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# Python extras
+.pytest_cache/
+ipynb_checkpoints/
+
+# Cache and build
+.cache/
+node_modules/
+package-lock.json
+yarn.lock
+
+# Secrets
+.env*
+.secret
+secrets.json
+
+# Git metadata
+.DS_Store
+.gitattributes
+
+
