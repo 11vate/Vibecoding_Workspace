@@ -1,0 +1,23 @@
+version: v1.1
+
+llm:
+  provider: ollama
+  config:
+    model: vibecoder
+    base_url: http://localhost:11434
+
+vector_store:
+  provider: chroma
+  config:
+    collection_name: vibecoder_memory
+    path: ./memory-db
+
+embedder:
+  provider: ollama
+  config:
+    model: nomic-embed-text
+    base_url: http://localhost:11434
+
+memory:
+  update_memory_messages: 5
+  max_memory_items: 1000
