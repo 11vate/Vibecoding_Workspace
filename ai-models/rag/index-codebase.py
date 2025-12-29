@@ -7,7 +7,7 @@ Gives vibecoder instant access to all your code patterns
 from pathlib import Path
 import chromadb
 from chromadb.utils import embedding_functions
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 import json
 import sys
 
@@ -34,7 +34,7 @@ def index_codebase(verbose=True):
     """Index all code files in the workspace"""
 
     if verbose:
-        print("🎮 Vibecoder RAG Indexer")
+        print("Vibecoder RAG Indexer")
         print("=" * 80)
         print(f"Workspace: {WORKSPACE_PATH}")
         print(f"Database: {PERSIST_DIR}")
@@ -107,23 +107,23 @@ def index_codebase(verbose=True):
             files_indexed += 1
 
             if verbose and files_indexed % 10 == 0:
-                print(f"📚 Indexed {files_indexed} files ({chunks_total} chunks)...")
+                print(f"[*] Indexed {files_indexed} files ({chunks_total} chunks)...")
 
         except Exception as e:
             errors.append(f"{file_path}: {str(e)[:50]}")
             if verbose and len(errors) < 5:
-                print(f"⚠️  Skipped {file_path.name}: {str(e)[:50]}")
+                print(f"[!] Skipped {file_path.name}: {str(e)[:50]}")
 
     if verbose:
         print()
         print("=" * 80)
-        print("✅ Indexing complete!")
+        print("[OK] Indexing complete!")
         print(f"   Files: {files_indexed}")
         print(f"   Chunks: {chunks_total}")
         print(f"   Errors: {len(errors)}")
         print(f"   Storage: {PERSIST_DIR}")
         print()
-        print("🚀 Your vibecoder now has instant access to your entire codebase!")
+        print("[+] Your vibecoder now has instant access to your entire codebase!")
         print()
         print("Usage:")
         print("  python query-rag.py 'How is player movement implemented?'")
@@ -139,8 +139,8 @@ if __name__ == "__main__":
     try:
         result = index_codebase(verbose=True)
     except KeyboardInterrupt:
-        print("\n\n❌ Indexing cancelled by user")
+        print("\n\n[!] Indexing cancelled by user")
         sys.exit(1)
     except Exception as e:
-        print(f"\n\n❌ Fatal error: {e}")
+        print(f"\n\n[ERROR] Fatal error: {e}")
         sys.exit(1)
