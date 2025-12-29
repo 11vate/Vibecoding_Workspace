@@ -305,11 +305,15 @@ echo "Component generated: src/components/$COMPONENT_NAME.ts"
 
 ## 📖 Full Documentation
 
-See `CREATE_CUSTOM_MODEL.md` for:
-- Complete customization guide
-- Fine-tuning instructions
-- Continuous learning setup
-- Advanced techniques
+### Essential Guides
+
+- **`CREATE_CUSTOM_MODEL.md`** - Complete customization and fine-tuning guide
+- **`ULTIMATE_VIBECODER_ENHANCEMENT_PLAN.md`** - Make vibecoder exponentially more powerful
+  - RAG (codebase knowledge), Memory (persistent learning)
+  - Vision (screenshots → code), Agents (autonomous workflows)
+  - Self-improvement, MoE routing, MCP integration
+  - Infinite context, advanced quantization, model merging
+  - Transform vibecoder to surpass Claude for vibecoding tasks
 
 ## ❓ Troubleshooting
 

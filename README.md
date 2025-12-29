@@ -35,6 +35,11 @@ This workspace now includes the **ultimate free, offline-capable game developmen
 
 **📋 See [SETUP_GUIDE.md](./SETUP_GUIDE.md) for installation instructions**
 
+**🚀 See [ai-models/ULTIMATE_VIBECODER_ENHANCEMENT_PLAN.md](./ai-models/ULTIMATE_VIBECODER_ENHANCEMENT_PLAN.md) for advanced AI enhancements**
+  - Make your local AI exponentially more capable than Claude
+  - RAG, Memory, Vision, Agents, Self-Improvement, MoE, MCP integration
+  - 100% free, 125x context window, infinite codebase knowledge
+
 ---
 
 ## Quick Start
