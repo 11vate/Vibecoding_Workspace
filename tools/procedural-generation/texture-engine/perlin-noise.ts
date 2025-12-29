@@ -4,10 +4,12 @@
  * Purpose: Generate natural-looking textures using Perlin noise algorithm
  * Authority: Tier 2 (Mandatory for texture generation)
  * Use: Backgrounds, tiles, terrain, organic textures
+ * Note: Refactored to use optimized NoiseLibrary (noisejs)
  */
 
 import { createCanvas } from 'canvas';
 import { Color } from '../geometric-engine/canvas-renderer';
+import { NoiseLibrary } from '../noise';
 
 export interface NoiseConfig {
   width: number;
@@ -23,61 +25,12 @@ export interface TextureConfig extends NoiseConfig {
 }
 
 /**
- * Perlin Noise implementation (simplified for deterministic generation)
+ * Perlin Noise implementation
+ * Wraps the optimized NoiseLibrary
  */
-class PerlinNoise {
-  private permutation: number[];
-
+export class PerlinNoise {
   constructor(seed: number) {
-    // Generate permutation table from seed
-    this.permutation = this.generatePermutation(seed);
-  }
-
-  /**
-   * Generate permutation table deterministically from seed
-   */
-  private generatePermutation(seed: number): number[] {
-    const p: number[] = [];
-
-    // Initialize with 0-255
-    for (let i = 0; i < 256; i++) {
-      p[i] = i;
-    }
-
-    // Shuffle using seed-based LCG
-    let state = seed;
-    for (let i = 255; i > 0; i--) {
-      state = (state * 1664525 + 1013904223) % 4294967296;
-      const j = Math.floor((state / 4294967296) * (i + 1));
-      [p[i], p[j]] = [p[j], p[i]];
-    }
-
-    // Duplicate for overflow handling
-    return [...p, ...p];
-  }
-
-  /**
-   * Fade function for smooth interpolation
-   */
-  private fade(t: number): number {
-    return t * t * t * (t * (t * 6 - 15) + 10);
-  }
-
-  /**
-   * Linear interpolation
-   */
-  private lerp(a: number, b: number, t: number): number {
-    return a + t * (b - a);
-  }
-
-  /**
-   * Gradient function
-   */
-  private grad(hash: number, x: number, y: number): number {
-    const h = hash & 3;
-    const u = h < 2 ? x : y;
-    const v = h < 2 ? y : x;
-    return ((h & 1) === 0 ? u : -u) + ((h & 2) === 0 ? v : -v);
+    NoiseLibrary.seed(seed);
   }
 
   /**
@@ -85,54 +38,15 @@ class PerlinNoise {
    * Returns value between -1 and 1
    */
   public noise2D(x: number, y: number): number {
-    // Find unit square coordinates
-    const X = Math.floor(x) & 255;
-    const Y = Math.floor(y) & 255;
-
-    // Find relative x, y in square
-    x -= Math.floor(x);
-    y -= Math.floor(y);
-
-    // Compute fade curves
-    const u = this.fade(x);
-    const v = this.fade(y);
-
-    // Hash coordinates of square corners
-    const p = this.permutation;
-    const a = p[X] + Y;
-    const b = p[X + 1] + Y;
-
-    // Blend results from 4 corners
-    return this.lerp(
-      this.lerp(this.grad(p[a], x, y), this.grad(p[b], x - 1, y), u),
-      this.lerp(this.grad(p[a + 1], x, y - 1), this.grad(p[b + 1], x - 1, y - 1), u),
-      v
-    );
+    return NoiseLibrary.perlin2D(x, y);
   }
 
   /**
-   * Get octave noise (layered for more detail)
+   * Generate octave noise (fractal brownian motion)
+   * Returns value between -1 and 1
    */
-  public octaveNoise2D(
-    x: number,
-    y: number,
-    octaves: number = 4,
-    persistence: number = 0.5
-  ): number {
-    let total = 0;
-    let frequency = 1;
-    let amplitude = 1;
-    let maxValue = 0;
-
-    for (let i = 0; i < octaves; i++) {
-      total += this.noise2D(x * frequency, y * frequency) * amplitude;
-
-      maxValue += amplitude;
-      amplitude *= persistence;
-      frequency *= 2;
-    }
-
-    return total / maxValue;
+  public octaveNoise2D(x: number, y: number, octaves: number, persistence: number): number {
+    return NoiseLibrary.fbm2D(x, y, octaves, persistence);
   }
 }
 

@@ -8,6 +8,7 @@
 
 import { createCanvas } from 'canvas';
 import { Color } from '../geometric-engine/canvas-renderer';
+import { NoiseLibrary } from '../noise';
 
 export interface CAConfig {
   width: number;
@@ -17,38 +18,23 @@ export interface CAConfig {
   iterations: number; // How many CA steps to run
   rule: CARule;
   initialDensity?: number; // 0-1, initial fill percentage
+  noiseInfluence?: number; // 0-1, how much noise affects initial state
 }
 
 export type CARule = 'conway' | 'cave' | 'maze' | 'erosion';
 
 /**
- * Linear Congruential Generator
- */
-class LCG {
-  private state: number;
-
-  constructor(seed: number) {
-    this.state = seed;
-  }
-
-  next(): number {
-    this.state = (this.state * 1664525 + 1013904223) % 4294967296;
-    return this.state / 4294967296;
-  }
-}
-
-/**
  * Generate pixel art using cellular automata
  */
 export function generateCellularAutomata(config: CAConfig): Buffer {
-  const { width, height, palette, seed, iterations, rule, initialDensity = 0.45 } = config;
+  const { width, height, palette, seed, iterations, rule, initialDensity = 0.45, noiseInfluence = 0.0 } = config;
 
   const canvas = createCanvas(width, height);
   const ctx = canvas.getContext('2d');
   ctx.clearRect(0, 0, width, height);
 
   // Initialize grid
-  let grid = initializeGrid(width, height, initialDensity, seed);
+  let grid = initializeGrid(width, height, initialDensity, seed, noiseInfluence);
 
   // Apply CA rules for specified iterations
   for (let i = 0; i < iterations; i++) {
@@ -62,16 +48,32 @@ export function generateCellularAutomata(config: CAConfig): Buffer {
 }
 
 /**
- * Initialize random grid
+ * Initialize grid using NoiseLibrary for better organic distribution
  */
-function initializeGrid(width: number, height: number, density: number, seed: number): number[][] {
+function initializeGrid(width: number, height: number, density: number, seed: number, noiseInfluence: number = 0.0): number[][] {
   const grid: number[][] = [];
-  const rng = new LCG(seed);
+  NoiseLibrary.seed(seed);
 
   for (let y = 0; y < height; y++) {
     grid[y] = [];
     for (let x = 0; x < width; x++) {
-      grid[y][x] = rng.next() < density ? 1 : 0;
+      let value = 0;
+      
+      // Mixed approach: Random + Noise
+      const randomVal = Math.random();
+      
+      if (noiseInfluence > 0) {
+        // Normalize noise from -1..1 to 0..1
+        const noiseVal = (NoiseLibrary.perlin2D(x / 10, y / 10) + 1) / 2;
+        // Blend random and noise based on influence
+        const blendedVal = (randomVal * (1 - noiseInfluence)) + (noiseVal * noiseInfluence);
+        value = blendedVal < density ? 1 : 0;
+      } else {
+        // Pure random (classic CA)
+        value = randomVal < density ? 1 : 0;
+      }
+      
+      grid[y][x] = value;
     }
   }
 
