@@ -1,0 +1,26 @@
+{
+  "name": "vibecoding-game-excalibur",
+  "version": "1.0.0",
+  "description": "Optimal vibecoding stack for game development with Excalibur.js, offline-first PWA",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "excalibur": "^0.29.3",
+    "zustand": "^4.5.0",
+    "ape-ecs": "^1.4.1",
+    "fast-noise-lite": "^1.1.1",
+    "idb": "^8.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.6",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.11",
+    "vite-plugin-pwa": "^0.19.2",
+    "workbox-window": "^7.0.0"
+  }
+}

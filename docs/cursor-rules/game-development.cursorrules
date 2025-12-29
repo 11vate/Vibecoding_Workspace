@@ -1,0 +1,423 @@
+# Cursor Rules: Game Development with Excalibur.js
+
+**Project Type**: 2D Game Development
+**Stack**: Excalibur.js + TypeScript + Vite + PWA
+**Architecture**: ECS (Entity Component System)
+**State Management**: Zustand with IndexedDB persistence
+
+---
+
+## Core Principles
+
+1. **Design Intelligence Stack First**
+   - Always reason through DIS layers before coding
+   - Experience → Psychology → Mechanics → Data → Code
+
+2. **Blueprint Before Code**
+   - Never implement without formal blueprint
+   - Create `/docs/blueprints/[feature].md` first
+
+3. **Type Safety Mandatory**
+   - TypeScript strict mode enforced
+   - No `any` types allowed
+   - All game logic must be typed
+
+4. **Offline-First Architecture**
+   - All features must work offline
+   - IndexedDB for persistent data
+   - Service Worker for asset caching
+
+---
+
+## Game Development Patterns
+
+### Scene Structure
+
+```typescript
+import { Scene, Engine } from 'excalibur'
+
+export class MyScene extends Scene {
+  onInitialize(engine: Engine): void {
+    // Setup: Create actors, add to scene
+    // This runs once when scene is created
+  }
+
+  onActivate(): void {
+    // Activation: Register event listeners
+    // This runs every time scene becomes active
+  }
+
+  onDeactivate(): void {
+    // Cleanup: Remove event listeners
+    // This runs every time scene becomes inactive
+  }
+
+  onPreUpdate(engine: Engine, delta: number): void {
+    // Update: Game logic before physics
+    // Called every frame
+  }
+}
+```
+
+### Actor Pattern (Game Objects)
+
+```typescript
+import { Actor, vec } from 'excalibur'
+
+export class Player extends Actor {
+  constructor() {
+    super({
+      pos: vec(0, 0),
+      width: 32,
+      height: 32,
+    })
+  }
+
+  onInitialize(engine: Engine): void {
+    // Setup actor
+  }
+
+  onPreUpdate(engine: Engine, delta: number): void {
+    // Update logic (deterministic!)
+    const dt = delta / 1000 // Convert to seconds
+
+    // Handle input
+    if (engine.input.keyboard.isHeld(Keys.ArrowRight)) {
+      this.pos.x += SPEED * dt
+    }
+  }
+}
+```
+
+### State Management Pattern
+
+```typescript
+import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
+
+interface GameState {
+  score: number
+  lives: number
+  increaseScore: (amount: number) => void
+}
+
+export const useGameStore = create<GameState>()(
+  persist(
+    (set) => ({
+      score: 0,
+      lives: 3,
+      increaseScore: (amount) =>
+        set((state) => ({ score: state.score + amount })),
+    }),
+    {
+      name: 'game-state',
+      storage: createIndexedDBStorage(),
+    }
+  )
+)
+```
+
+---
+
+## Quality Standards
+
+### No Magic Numbers
+
+❌ **Bad:**
+```typescript
+player.pos.x += 5
+```
+
+✅ **Good:**
+```typescript
+const PLAYER_SPEED = 200 // pixels per second
+player.pos.x += PLAYER_SPEED * deltaTime
+```
+
+### Deterministic Game Logic
+
+❌ **Bad:**
+```typescript
+// Non-deterministic: depends on frame rate
+onPreUpdate() {
+  player.pos.x += 5 // Moves differently at 30fps vs 60fps
+}
+```
+
+✅ **Good:**
+```typescript
+// Deterministic: frame-rate independent
+onPreUpdate(engine: Engine, delta: number) {
+  const dt = delta / 1000 // milliseconds to seconds
+  player.pos.x += SPEED * dt // Always consistent
+}
+```
+
+### Event-Driven Architecture
+
+❌ **Bad:**
+```typescript
+// Tight coupling
+class Player {
+  onCollision() {
+    game.score += 10 // Direct access to global state
+  }
+}
+```
+
+✅ **Good:**
+```typescript
+// Event-driven, decoupled
+class Player {
+  onCollision() {
+    this.emit('score-earned', { amount: 10 })
+  }
+}
+
+// Elsewhere
+player.on('score-earned', (evt) => {
+  useGameStore.getState().increaseScore(evt.amount)
+})
+```
+
+---
+
+## Asset Management
+
+### Asset Registry Pattern
+
+```typescript
+// src/assets/index.ts
+import playerSprite from './sprites/player.png'
+import jumpSound from './audio/jump.wav'
+
+export const Assets = {
+  Sprites: {
+    Player: playerSprite,
+  },
+  Audio: {
+    Jump: jumpSound,
+  },
+} as const
+
+// Usage
+import { Assets } from '@/assets'
+const sprite = Assets.Sprites.Player
+```
+
+### Procedural Asset Generation
+
+When asset doesn't exist:
+
+```typescript
+import { Canvas } from 'excalibur'
+
+// Generate simple sprites procedurally
+function generateButton(width: number, height: number, color: string): Canvas {
+  const canvas = new Canvas({
+    width,
+    height,
+    draw: (ctx) => {
+      ctx.fillStyle = color
+      ctx.fillRect(0, 0, width, height)
+      ctx.strokeStyle = '#000'
+      ctx.strokeRect(0, 0, width, height)
+    },
+  })
+  return canvas
+}
+```
+
+---
+
+## Performance Optimization
+
+### Object Pooling
+
+```typescript
+class BulletPool {
+  private pool: Bullet[] = []
+  private active: Set<Bullet> = new Set()
+
+  acquire(): Bullet {
+    const bullet = this.pool.pop() || new Bullet()
+    this.active.add(bullet)
+    return bullet
+  }
+
+  release(bullet: Bullet): void {
+    this.active.delete(bullet)
+    this.pool.push(bullet)
+  }
+}
+```
+
+### Sprite Batching
+
+```typescript
+// Use sprite sheets instead of individual images
+import { SpriteSheet } from 'excalibur'
+
+const spriteSheet = SpriteSheet.fromImageSource({
+  image: playerSpriteSheet,
+  grid: {
+    rows: 4,
+    columns: 4,
+    spriteWidth: 32,
+    spriteHeight: 32,
+  },
+})
+```
+
+---
+
+## Common Patterns
+
+### Input Handling
+
+```typescript
+// Scene-level input
+onActivate() {
+  this.engine.input.keyboard.on('press', (evt) => {
+    if (evt.key === Keys.Space) {
+      this.player.jump()
+    }
+  })
+}
+
+onDeactivate() {
+  this.engine.input.keyboard.off('press')
+}
+```
+
+### Collision Detection
+
+```typescript
+player.on('collisionstart', (evt) => {
+  if (evt.other instanceof Enemy) {
+    this.emit('player-hit', { enemy: evt.other })
+  }
+})
+```
+
+### Camera Tracking
+
+```typescript
+// Follow player
+scene.camera.strategy.lockToActor(player)
+
+// Or custom camera
+scene.camera.pos = player.pos.clone()
+```
+
+---
+
+## Testing Strategy
+
+### Unit Tests for Game Logic
+
+```typescript
+describe('ScoreSystem', () => {
+  it('should increase score correctly', () => {
+    const state = useGameStore.getState()
+    state.increaseScore(10)
+    expect(state.score).toBe(10)
+  })
+})
+```
+
+### Integration Tests for Scenes
+
+```typescript
+describe('GameScene', () => {
+  it('should initialize player', () => {
+    const scene = new GameScene()
+    const engine = new Engine()
+    scene.onInitialize(engine)
+    expect(scene.actors.length).toBeGreaterThan(0)
+  })
+})
+```
+
+---
+
+## Debugging Tips
+
+### Enable Debug Mode
+
+```typescript
+const engine = new Engine({
+  // ... config
+  displayMode: DisplayMode.FitScreen,
+})
+
+// Show FPS and debug info
+engine.showDebug(true)
+```
+
+### Log Game State
+
+```typescript
+// Subscribe to state changes
+useGameStore.subscribe((state) => {
+  console.log('Game State:', state)
+})
+```
+
+---
+
+## Deployment Checklist
+
+- [ ] `npm run type-check` passes
+- [ ] `npm run build` succeeds
+- [ ] No console errors in production
+- [ ] PWA works offline
+- [ ] Service worker registers correctly
+- [ ] IndexedDB persistence works
+- [ ] Game performs at 60fps
+- [ ] Assets load correctly
+- [ ] Mobile controls work (if applicable)
+
+---
+
+## AI Assistant Guidelines
+
+When I ask you to:
+
+**"Add a feature"**
+1. Ask me to create a blueprint first
+2. Review `/docs/blueprints/`
+3. Implement exactly as specified
+4. No deviations without approval
+
+**"Fix a bug"**
+1. Reproduce the bug
+2. Identify root cause
+3. Explain fix before implementing
+4. Test the fix
+
+**"Optimize performance"**
+1. Profile first (identify bottleneck)
+2. Explain optimization strategy
+3. Implement
+4. Measure improvement
+
+**"Generate an asset"**
+1. Check asset registry first
+2. If not found, generate procedurally
+3. Register in asset index
+4. Return symbolic reference
+
+---
+
+## References
+
+- Excalibur.js Docs: https://excaliburjs.com/
+- Zustand Guide: https://github.com/pmndrs/zustand
+- TypeScript Handbook: https://www.typescriptlang.org/docs/
+- Workspace Philosophy: `/WORKSPACE_PHILOSOPHY.md`
+- Design Intelligence Stack: `/docs/design-intelligence/`
+
+---
+
+**Follow these rules strictly. Quality over speed. Design before code.**
